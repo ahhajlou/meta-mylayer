@@ -5,11 +5,17 @@ Please see the corresponding sections below for details.
 Dependencies
 ============
 
-  URI: <first dependency>
-  branch: <branch name>
+  URI: git://git.yoctoproject.org/poky
+  branch: walnascar
 
-  URI: <second dependency>
-  branch: <branch name>
+  URI: git://git.openembedded.org/meta-openembedded
+  branch: walnascar
+
+  URI: git://git.yoctoproject.org/meta-raspberrypi
+  branch: walnascar
+
+  URI: git://code.qt.io/yocto/meta-qt6.git
+  branch: 6.9  
 
   .
   .
@@ -39,3 +45,29 @@ II. Misc
 ========
 
 --- replace with specific information about the meta-mylayer layer ---
+<br>
+**Driver recipe path:** `meta-mylayer/recipes-kernel/virtual-keyboard`
+<br>
+**DTBO recipe path:** `meta-mylayer/recipes-bsp/overlays`
+<br>
+**config.txt append recipe path:** `meta-mylayer/recipes-bsp/bootfiles`
+
+
+III. local.conf
+========
+
+```
+BB_NUMBER_THREADS = "4"
+PARALLEL_MAKE = "-j 4"
+
+RM_OLD_IMAGE = "1"
+INHERIT += "rm_work"
+
+LICENSE_FLAGS_ACCEPTED = "synaptics-killswitch"
+
+MACHINE = "raspberrypi5"
+
+# DISTRO = "simple-desktop"
+# DISTRO = "minimal-desktop"
+DISTRO = "simple-framebuffer"
+```
