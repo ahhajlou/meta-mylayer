@@ -22,5 +22,4 @@ do_install() {
     install -m 0755 ${B}/simple-sdl3-app ${D}${bindir}/
 }
 
-# Optional: Add to image
-RDEPENDS:${PN} = "libsdl3"
+RDEPENDS:${PN} = "libsdl3 libsdl3-ttf"
