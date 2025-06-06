@@ -9,6 +9,7 @@ SRC_URI = "\
            "
 
 S = "${WORKDIR}/sources"
+UNPACKDIR = "${S}"
 
 DEPENDS += " qtbase "
 
