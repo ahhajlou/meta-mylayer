@@ -70,4 +70,9 @@ MACHINE = "raspberrypi5"
 # DISTRO = "simple-desktop"
 # DISTRO = "minimal-desktop"
 DISTRO = "simple-framebuffer"
+
+IMAGE_INSTALL:append = " virtual-keyboard-dtbo"
+IMAGE_BOOT_FILES:append = " overlays/virtual-keyboard.dtbo;overlays/virtual-keyboard.dtbo"
+#RPI_EXTRA_IMAGE_BOOT_FILES:append = " overlays/virtual-keyboard.dtbo;overlays/virtual-keyboard.dtbo"
+
 ```
