@@ -1,0 +1,20 @@
+#!/bin/sh
+
+
+echo "Disaplay splash on framebuffer"
+
+if [ -e /dev/fb0 ]; then
+    echo "Frame buffer device 0 exists"
+fi
+
+echo "ls /usr/share"
+ls /usr/share
+
+echo "ls /usr/share/splash"
+ls /usr/share/splash
+
+lzop -cqd /usr/share/splash/splash.fb.lzo > /dev/fb0
+
+echo "Displayed."
+
+exit 0

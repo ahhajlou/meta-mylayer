@@ -1,0 +1,3 @@
+[submodule "meta-rauc-community"]
+	path = meta-rauc-community
+	url = ./meta-rauc-community
