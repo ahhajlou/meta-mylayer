@@ -1,0 +1,4 @@
+meta-openembedded/*
+meta-qt5/*
+meta-raspberrypi/*
+poky/*
