@@ -1,0 +1,18 @@
+services:
+  yocto-docker-container:
+    image: yocto-docker-image
+
+    tty: true
+    stdin_open: true
+    user: yocto
+
+    volumes:
+      - /home/amirhossein/Github/worktee-walnascar-eglfs:/opt/yocto-docker
+      #- /home/amirhossein/Projects/yocto-sdk:/opt/yocto-sdk
+      - /home/amirhossein/tmp/yocto/build/downloads:/opt/yocto-docker/build/downloads
+
+    deploy:
+      resources:
+        limits:
+          memory: 17g
+    memswap_limit: 17g
