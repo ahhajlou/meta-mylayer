@@ -1,0 +1,74 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          your-qt-app
+# Required-Start:    $local_fs $network $syslog $remote_fs
+# Required-Stop:     $local_fs $network $syslog $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/stop your Qt application
+# Description:       This script starts and stops your Qt application.
+### END INIT INFO
+
+# Path to your Qt application executable
+APP_NAME="#MYQTAPP-APP-NAME#"
+APP_PATH="#BINDIR#/$APP_NAME"
+
+export LC_ALL=C.UTF-8
+export QT_QPA_PLATFORM="eglfs"
+#export QT_QPA_EGLFS_WIDTH="1280"
+#export QT_QPA_EGLFS_HEIGHT="800"
+#export QT_QPA_EGLFS_PHYSICAL_WIDTH="350"  # physical screen's width in millimeters (! guessed !)
+#export QT_QPA_EGLFS_PHYSICAL_HEIGHT="190"  # physical screen's height in millimeters (! guessed !)
+export QT_QPA_EGLFS_KMS_CONFIG="#EGLFS-KMS-CONFIG-PATH#"
+export QT_QPA_EGLFS_HIDECURSOR=1
+
+# Function to start the application
+do_start() {
+    echo "Starting your Qt application..."
+    $APP_PATH &>/dev/null &
+    echo "Your Qt application started."
+}
+
+# Function to stop the application
+do_stop() {
+    echo "Stopping your Qt application..."
+    killall -TERM "$APP_NAME" # Replace with the actual process name if different
+    sleep 2 # Give time for the application to terminate gracefully
+    killall -KILL "$APP_NAME" # Force kill if still running
+    echo "Your Qt application stopped."
+}
+
+# Function to check application status
+do_status() {
+    pgrep -f "$APP_NAME" > /dev/null
+    if [ $? -eq 0 ]; then
+        echo "Your Qt application is running."
+        return 0
+    else
+        echo "Your Qt application is not running."
+        return 3
+    fi
+}
+
+case "$1" in
+    start)
+        do_start
+        ;;
+    stop)
+        do_stop
+        ;;
+    restart)
+        do_stop
+        do_start
+        ;;
+    status)
+        do_status
+        ;;
+    *)
+        echo "Usage: /etc/init.d/your-qt-app {start|stop|restart|status}"
+        exit 1
+        ;;
+esac
+
+exit 0
+
