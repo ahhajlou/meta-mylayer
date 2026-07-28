@@ -1,0 +1,20 @@
+services:
+  yocto-driver-docker-container:
+    image: ghcr.io/siemens/kas/kas:5.0
+
+    tty: true
+    stdin_open: true
+    user: builder
+    working_dir: /opt/yocto
+
+    volumes:
+      - ./layers:/opt/yocto/layers
+      - ./build:/opt/yocto/build
+      - ./kas-poky-rpi.yml:/opt/yocto/kas-poky-rpi.yml
+      - /home/amirhossein/tmp/yocto/build/downloads:/opt/download-walnascar
+
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 17g
+    # memswap_limit: 17g

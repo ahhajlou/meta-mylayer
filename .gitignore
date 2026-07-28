@@ -1,0 +1,5 @@
+build/
+layers/meta-openembedded/
+layers/meta-qt6/
+layers/meta-raspberrypi/
+layers/poky/
