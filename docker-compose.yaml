@@ -1,6 +1,7 @@
 services:
   yocto-docker-container:
-    image: yocto-docker-image
+    #image: yocto-docker-image
+    build: .
 
     tty: true
     stdin_open: true
