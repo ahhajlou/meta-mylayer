@@ -1,0 +1,20 @@
+header:
+  version: 8
+  includes:
+    - kas-base.yml  
+
+machine: raspberrypi5
+
+repos:
+  meta-raspberry:
+    url: http://git.yoctoproject.org/meta-raspberrypi
+    path: layers/meta-raspberrypi
+    # scarthgap
+    commit: 1918a27419dcd5e79954c0dc0edddcde91057a7e
+
+
+local_conf_header:
+  license: |
+    # Uncomment next line to allow the license
+    # See: linux-firmware-rpidistro in docs/ipcompliance.md
+    #LICENSE_FLAGS_ACCEPTED = "synaptics-killswitch"

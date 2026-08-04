@@ -1,0 +1,7 @@
+header:
+  version: 8
+
+local_conf_header:
+  shared-dirs: |
+    DL_DIR ?= "/work/build/downloads"
+    SSTATE_DIR ?= "/work/build/sstate-cache"    
