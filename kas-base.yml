@@ -44,7 +44,7 @@ local_conf_header:
     SDKMACHINE = "x86_64"
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
-  install:
+  install: |
     IMAGE_INSTALL:append = " kernel-modules"
     IMAGE_FEATURES += " ssh-server-openssh"
     IMAGE_INSTALL:remove = " dropbear"
