@@ -2,3 +2,5 @@ build*/
 
 layers/*
 !layers/meta-uartkbd/
+
+.kas_shell_history
