@@ -24,7 +24,8 @@ input events.
 - `layers/meta-uartkbd` holds the recipe that builds the uartkbd module, plus a
   kernel config fragment that enables the serdev bus (`CONFIG_SERIAL_DEV_BUS`).
 - `device-tree/uartkbd-device.dts` is an overlay that adds the `amh,uartkbd` node
-  to the second PL011 UART.
+  to the second PL011 UART. See `docs/qemu-device-tree.md` for the manual,
+  step-by-step version of the same thing.
 - `run-qemu.sh` dumps and merges the device tree, then boots QEMU with a second
   serial port exposed as a PTY.
 - `Makefile` wraps all of that in a few kas-container commands.
@@ -32,7 +33,7 @@ input events.
 The image also ships `evtest` and `openssh`, which is handy for looking at the
 generated input device on the target.
 
-## Requirements
+## Install requirements
 
 - ubuntu / debian:
 
@@ -44,6 +45,25 @@ sudo apt install qemu-system-aarch64
 
 ```bash
 sudo dnf install qemu-system-aarch64
+```
+
+The image is built through `kas`, which runs the build in a container. Install it
+with `uv`:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv tool install kas
+```
+
+`kas` also needs a container engine. The Makefile defaults to `podman`; to use
+docker instead, export `KAS_CONTAINER_ENGINE=docker` before running make. `kas` and
+`kas-container` are interchangeable: the Makefile defaults to `kas`, but you can
+switch back to `kas-container` with a make argument or an environment variable:
+
+```bash
+make build-qemuarm64 KAS_COMMAND=kas-container
+# or
+KAS_COMMAND=kas-container make build-qemuarm64
 ```
 
 ## Building and running

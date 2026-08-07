@@ -1,6 +1,7 @@
 TOPDIR := $(shell pwd)
 
-KAS_COMMAND ?= kas-container
+# `kas` and `kas-container` are identical; `kas-container` can be used instead
+KAS_COMMAND ?= kas
 
 # KAS_WORK_DIR = ~/yocto
 KAS_CONTAINER_ENGINE ?= podman
