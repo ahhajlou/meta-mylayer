@@ -1,3 +1,5 @@
+TOPDIR := $(shell pwd)
+
 KAS_COMMAND ?= kas-container
 
 # KAS_WORK_DIR = ~/yocto
@@ -30,13 +32,19 @@ build-qemuarm64:
 	$(call M_KAS_COMMAND,build,$(QEMUARM64_KAS_CONFIG_FILE))
 
 build-raspberrypi5:
-	$(call M_KAS_COMMAND,build,$(RPI5_KAS_CONFIG_FILE))
+# 	$(call M_KAS_COMMAND,build,$(RPI5_KAS_CONFIG_FILE))
+	@echo "'build-raspberrypi5' is not implemented"
+	@exit 1
 
 exec-kas:
 	KAS_CONTAINER_ENGINE=$(KAS_CONTAINER_ENGINE) \
 	KAS_CONTAINER_IMAGE_DISTRO=$(KAS_CONTAINER_IMAGE_DISTRO) \
 	KAS_BUILD_DIR=$(QEMUARM64_KAS_BUILD_DIR) \
 	$(KAS_COMMAND) $(EKC)
+
+run-qemuarm64:
+	BUILD_DIR=$(QEMUARM64_KAS_BUILD_DIR) $(TOPDIR)/run-qemu.sh dump_merge_dt
+	BUILD_DIR=$(QEMUARM64_KAS_BUILD_DIR) $(TOPDIR)/run-qemu.sh run
 
 help:
 	@echo "Help"

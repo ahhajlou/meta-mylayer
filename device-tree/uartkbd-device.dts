@@ -1,0 +1,8 @@
+/dts-v1/;
+/plugin/;
+
+&{/pl011@9040000} {
+    uartkbd_device {
+        compatible = "amh,uartkbd";
+    };
+};
