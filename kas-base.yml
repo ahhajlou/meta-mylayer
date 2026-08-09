@@ -48,9 +48,7 @@ local_conf_header:
     IMAGE_INSTALL:append = " kernel-modules"
     IMAGE_FEATURES += " ssh-server-openssh"
     IMAGE_INSTALL:remove = " dropbear"
-    IMAGE_INSTALL:append = " openssh-sshd"
-    IMAGE_INSTALL:append = " evtest"
-    IMAGE_INSTALL:append = " uartkbd"
+    KERNEL_MODULE_AUTOLOAD += "uartkbd"
   debug-tweaks: |
     IMAGE_FEATURES += "empty-root-password allow-empty-password allow-root-login post-install-logging"
   diskmon: |
