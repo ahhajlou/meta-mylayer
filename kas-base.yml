@@ -45,9 +45,13 @@ local_conf_header:
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
   install: |
-    IMAGE_INSTALL:append = " kernel-modules"
     IMAGE_FEATURES += " ssh-server-openssh"
     IMAGE_INSTALL:remove = " dropbear"
+    IMAGE_INSTALL:append = " \
+      kernel-modules \
+      openssh-sshd \
+      evtest \
+      uartkbd"
     KERNEL_MODULE_AUTOLOAD += "uartkbd"
   debug-tweaks: |
     IMAGE_FEATURES += "empty-root-password allow-empty-password allow-root-login post-install-logging"
